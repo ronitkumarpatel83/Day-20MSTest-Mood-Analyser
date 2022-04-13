@@ -17,6 +17,10 @@ namespace Day_20MSTest_Mood_Analyser
         {
             try
             {
+                if(message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionMood.EMPTY_MESSAGE, "Message should not be Empty");
+                }
                 if (message.ToLower().Contains("sad")) // If message contains sad word then return sad mood else return happy mood
                 {
                     return "SAD";
@@ -28,7 +32,8 @@ namespace Day_20MSTest_Mood_Analyser
             }
             catch (NullReferenceException ex)
             {
-                return "HAPPY";
+                Console.WriteLine(ex.Message);
+                throw new CustomException(CustomException.ExceptionMood.NULL_MESSAGE, "Message should not be Null");
             }
         }
     }
