@@ -8,17 +8,28 @@ namespace MoodAnalyzer
     public class MoodAnalysis
     {
         [TestMethod]
-        public void GivenMood() // UC 1
+        public void GivenMoodSad() // TC 1.1
         {
             //arrange
-            MoodAnalyze moodAnalyzer = new MoodAnalyze();
             string exp = "SAD";
             string message = "I am in sad mood";
+            MoodAnalyze moodAnalyzer = new MoodAnalyze();
             //act
             string act = moodAnalyzer.AnalyzeMood(message);
             ///Assert
             Assert.AreEqual(exp, act);
-            
+        }
+        [TestMethod]
+        public void GivenMoodHappy() // TC 1.2
+        {
+            //arrange
+            string exp = "HAPPY";
+            string message = "I am in happy mood";
+            MoodAnalyze moodAnalyzer = new MoodAnalyze();
+            //act
+            string act = moodAnalyzer.AnalyzeMood(message);
+            ///Assert
+            Assert.AreEqual(exp, act);
         }
     }
 }
