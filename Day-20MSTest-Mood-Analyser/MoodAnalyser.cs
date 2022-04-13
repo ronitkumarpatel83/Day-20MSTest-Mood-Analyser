@@ -15,11 +15,18 @@ namespace Day_20MSTest_Mood_Analyser
         }
         public string AnalyzeMood() // Creating method to find mood based on message
         {
-            if (message.ToLower().Contains("sad")) // If message contains sad word then return sad mood else return happy mood
+            try
             {
-                return "SAD";
+                if (message.ToLower().Contains("sad")) // If message contains sad word then return sad mood else return happy mood
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
             }
-            else
+            catch (NullReferenceException ex)
             {
                 return "HAPPY";
             }

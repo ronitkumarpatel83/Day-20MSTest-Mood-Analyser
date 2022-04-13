@@ -30,6 +30,19 @@ namespace MoodAnalyzer
             string act = moodAnalyzer.AnalyzeMood();
             ///Assert
             Assert.AreEqual(exp, act);
+
+        }
+        [TestMethod]
+        public void GivenMoodNull() //Refactor TC 1.2
+        {
+            //arrange
+            string exp = "HAPPY";
+            string message = null;
+            MoodAnalyze moodAnalyzer = new MoodAnalyze(message);
+            //act
+            string act = moodAnalyzer.AnalyzeMood();
+            ///Assert
+            Assert.AreEqual(exp, act);
         }
     }
 }
