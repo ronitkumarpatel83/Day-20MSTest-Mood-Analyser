@@ -8,7 +8,12 @@ namespace Day_20MSTest_Mood_Analyser
 {
     public class MoodAnalyze
     {
-        public string AnalyzeMood(string message) // Creating method to find mood based on message
+        public string message;
+        public MoodAnalyze(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyzeMood() // Creating method to find mood based on message
         {
             if (message.ToLower().Contains("sad")) // If message contains sad word then return sad mood else return happy mood
             {
