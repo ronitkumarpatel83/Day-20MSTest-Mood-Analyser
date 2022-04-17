@@ -44,5 +44,36 @@ namespace Day_20MSTest_Mood_Analyser.Reflection
                 return e.Message;
             }
         }
+        public object CreateMoodAnalyzerParameterizedObject(string className, string constructor, string message)
+        {
+            try
+            {
+                if (className == null || constructor == null || message == null) // If any field is null then throw exception
+                {
+                    throw new CustomException(CustomException.ExceptionMood.NULL_MESSAGE, "Class name,constructor name or message should not be null");
+                }
+                Type type = typeof(MoodAnalyze); // Getting a type of MoodAnalyzer class
+                if (type.Name.Equals(className) || type.FullName.Equals(className)) // If actual type name of Mood Analyzer class is matching with given class name throw create object
+                {
+                    if (type.Name.Equals(constructor)) // If class name is match with constructor then create parameterized object of class
+                    {
+                        ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) }); //Getting constructor which hase one parameter of type string
+                        return constructorInfo.Invoke(new object[] { message }); //Invoking a object
+                    }
+                    else // else throw exception constructor not found
+                    {
+                        throw new CustomException(CustomException.ExceptionMood.CONSTRUCTOR_NOT_FOUND, "Constructor not found");
+                    }
+                }
+                else  //else throw exception class not found
+                {
+                    throw new CustomException(CustomException.ExceptionMood.CLASS_NOT_FOUND, "Class not found");
+                }
+            }
+            catch (CustomException e)
+            {
+                return e.Message;
+            }
+        }
     }
 }
