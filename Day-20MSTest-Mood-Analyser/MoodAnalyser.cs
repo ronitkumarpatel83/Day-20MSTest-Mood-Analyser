@@ -9,6 +9,10 @@ namespace Day_20MSTest_Mood_Analyser
     public class MoodAnalyze
     {
         public string message;
+        public MoodAnalyze()
+        {
+            Console.WriteLine("Default Constructor");
+        }
         public MoodAnalyze(string message)
         {
             this.message = message;

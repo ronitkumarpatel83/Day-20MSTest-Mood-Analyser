@@ -10,7 +10,10 @@ namespace Day_20MSTest_Mood_Analyser
     {
         public enum ExceptionMood
         {
-            NULL_MESSAGE,EMPTY_MESSAGE
+            NULL_MESSAGE,
+            EMPTY_MESSAGE,
+            CLASS_NOT_FOUND,
+            CONSTRUCTOR_NOT_FOUND
         }
         public ExceptionMood type;
         public CustomException(ExceptionMood type,string message):base(message)
