@@ -217,6 +217,62 @@ namespace MoodAnalyzer
                 Assert.AreEqual("Method not found", ex.Message);
             }
         }
+        /// <summary>
+        /// TC 7.1 Set Happy Message with Reflector Should Return HAPPY
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenFieldNameAndMessageReturnsMood()
+        {
+            string userMessage = "I am in happy mood";
+            string fieldName = "message";
+            string expected = "HAPPY";
+            string actual = "";
 
+            MoodAnalyzerReflector moodAnalyzerReflector = new MoodAnalyzerReflector();
+            actual = moodAnalyzerReflector.SetField(userMessage, fieldName);
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        /// TC 7.2 Set Field When Improper Should Throw Exception with No Such Field
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenInvalidFieldNameThrowException()
+        {
+            string userMessage = "I am in happy mood";
+            string fieldName = "mood";
+            string expected = "HAPPY";
+            string actual = "";
+            try
+            {
+                MoodAnalyzerReflector moodAnalyzerReflector = new MoodAnalyzerReflector();
+                actual = moodAnalyzerReflector.SetField(userMessage, fieldName);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Field name not found", ex.Message);
+            }
+        }
+        /// <summary>
+        /// TC 7.3 Setting Null Message with Reflector Should Throw Exception
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenNullMessageThrowException()
+        {
+            string userMessage = null;
+            string fieldName = "message";
+            string actual = "";
+            try
+            {
+                MoodAnalyzerReflector moodAnalyzerReflector = new MoodAnalyzerReflector();
+                actual = moodAnalyzerReflector.SetField(userMessage, fieldName);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Message should not be null", ex.Message);
+            }
+        }
     }
 }

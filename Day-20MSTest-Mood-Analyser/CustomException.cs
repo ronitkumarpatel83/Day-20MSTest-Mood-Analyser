@@ -14,7 +14,8 @@ namespace Day_20MSTest_Mood_Analyser
             EMPTY_MESSAGE,
             CLASS_NOT_FOUND,
             CONSTRUCTOR_NOT_FOUND,
-            METHOD_NOT_FOUND
+            METHOD_NOT_FOUND,
+            FIELD_NOT_FOUND
         }
         public ExceptionMood type;
         public CustomException(ExceptionMood type,string message):base(message)
