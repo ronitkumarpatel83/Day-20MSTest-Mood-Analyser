@@ -175,5 +175,48 @@ namespace MoodAnalyzer
                 Assert.AreEqual("Constructor not found", ex.Message);
             }
         }
+        /// <summary>
+        /// TC 6.1 Given Happy Message Using Reflection When Proper Should Return HAPPY Mood by invoking a method
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenMethodNameWithMessageReturnMood()
+        {
+            string message = "I am in happy mood";
+            string expected = "HAPPY";
+            string actual = "";
+            try
+            {
+                MoodAnalyzerReflector moodAnalyzerReflector = new MoodAnalyzerReflector();
+                actual = moodAnalyzerReflector.InvokeMethod(message, "AnalyzeMood");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Method not found", ex.Message);
+            }
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        /// TC 6.2 Given Happy Message When Improper Method Should Throw MoodAnalysisException
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenInvalidMethodNameWithMessageThrowException()
+        {
+            string message = "I am in happy mood";
+            string expected = "HAPPY";
+            string actual = "";
+            try
+            {
+                MoodAnalyzerReflector moodAnalyzerReflector = new MoodAnalyzerReflector();
+                actual = moodAnalyzerReflector.InvokeMethod(message, "Mood");
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Method not found", ex.Message);
+            }
+        }
+
     }
 }
